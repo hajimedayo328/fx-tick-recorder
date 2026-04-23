@@ -32,9 +32,17 @@ SYMBOLS: list[str] = [
     "CHINA50.r",
     # Special (2)
     "USDX.r", "VIX.r",
+    # === 2026/4/24 Added ===
+    # US Stocks Mag7 subset (5): NVDA, GOOGL, AMZN are not on Vantage
+    "AAPL", "MSFT", "GOOG", "META", "TSLA",
+    # Rates (3): US10y, German Bund 10y, UK 10y
+    "USNote10Y", "EUB10Y", "LongGilt",
+    # Commodity (2): Copper, Natural Gas
+    "COPPER-Cr", "NG-Cr",
 ]
 
-assert len(SYMBOLS) == 31, f"Expected 31 symbols, got {len(SYMBOLS)}"
+assert len(SYMBOLS) > 0, "SYMBOLS is empty"
+N_SYMBOLS: int = len(SYMBOLS)
 
 
 # ========== ファイル保存先 ==========
