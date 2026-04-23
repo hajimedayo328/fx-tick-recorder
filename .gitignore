@@ -1,0 +1,33 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+venv/
+env/
+.venv/
+
+# Parquet data (never commit recorded ticks)
+*.parquet
+TickData/
+_logs/
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+heartbeat.txt
+
+# Secrets (should never appear here, but safety net)
+.env
+.env.*
+*.key
+*.pem
+credentials.json
