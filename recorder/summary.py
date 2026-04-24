@@ -14,12 +14,19 @@ Markdownレポートを `_logs/weekly_summary_YYYY-WNN.md` に書き出す。
 from __future__ import annotations
 
 import argparse
+import io
 import logging
+import sys
 from datetime import datetime, timedelta, timezone, date
 from pathlib import Path
 from collections import defaultdict
 
 import pandas as pd
+
+
+# cp932 だと em-dash や特殊記号で print が落ちるため UTF-8 でラップ
+if hasattr(sys.stdout, "buffer"):
+    sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding="utf-8", errors="replace")
 
 from .config import DATA_ROOT, LOG_DIR, SYMBOLS
 
@@ -121,7 +128,7 @@ def generate_markdown(
     week_label: str,
 ) -> str:
     lines: list[str] = []
-    lines.append(f"# Tick Recorder Weekly Summary — {week_label}")
+    lines.append(f"# Tick Recorder Weekly Summary - {week_label}")
     lines.append("")
     lines.append(f"- 期間: `{start_date.isoformat()}` 〜 `{end_date.isoformat()}`")
     lines.append(f"- 生成時刻 (UTC): `{datetime.now(timezone.utc).isoformat(timespec='seconds')}`")
